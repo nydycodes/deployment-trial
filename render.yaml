@@ -11,5 +11,5 @@ services:
       SECRET_KEY: supersecretkey
     ports:
       - name: http
-        port: 80
+        port: 8080
         protocol: http
