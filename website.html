@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthCloud - Input Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+
+    body, h1, h2, h3, p, ul, li {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Basic styles for layout */
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        font-size: 14px;
+        background-color: #f2f2f2;
+    }
+
+    header {
+        background-color: #24B0BA;
+        color: #fff;
+        padding: 20px;
+        font-size: 25px;
+        text-align: center;
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px;
+    }
+
+    .left-column, .right-column {
+        width: 45%;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    input[type="number"],
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 18px;
+        border: 1px solid #0f0f0f;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        font-weight: bold; /* Make the submit button bold */
+        cursor: pointer;
+        display: block;
+        margin: 0 auto; /* Center the submit button */
+    }
+
+    input[type="submit"]:hover {
+        background-color: #24B0BA;
+        color: #fff;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    footer {
+        background-color: #24B0BA;
+        color: #fff9f0;
+        padding: 10px;
+        text-align: center;
+    }
+    </style>   
+</head>
+
+<body style="background-color: #fff9f0">
+    <header>
+        <h1 style="color:#fff9f0">H E A L T H C L O U D</h1>
+    </header>
+
+<div class="container">
+    <div class="form-group">
+        <form id="healthForm" form action="{{url_for('predict')}}" method="post">        
+                <!-- Form inputs in the left column -->
+                <!-- Left column content remains the same -->
+                
+                    <label for="age">Age (in years):</label>
+                    <input type="number" id="age" name="age" min="0" max="100" required>      
+                    <p>Age of the patient in years.</p>
+                    
+                    <label for="sex">Sex (0: Female, 1: Male):</label>
+                    <input type="number" id="sex" name="sex" min="0" max="1" required>
+                    <p>Gender of the patient.</p>
+
+                    <label for="cp">Chest pain level:</label>
+                    <input type="number" id="cp" name="cp" min="1" max="4" required>
+                    <p>Measures discomfort in the chest, aiding diagnosis; guides urgent care for emergencies like heart attacks.</p>
+                    <p>1)Typical Angina: Chest pain due to reduced blood flow to the heart</p>  
+                    <p>2)Atypical Angina: Chest pain not conforming to typical angina symptoms</p>  
+                    <p>3)Non-Anginal pain: Chest discomfort that is unrelated to coronary artery disease or typical angina symptoms</p>
+                    <p>4)Asymptomatic: Showing no signs or symptoms of disease or medical condition.</p>
+                
+                    <label for="trestbps">Resting blood pressure (mmHg):</label>
+                    <input type="number" id="trestbps" name="trestbps" min="60" max="200" required>
+                    <p>Resting blood pressure: Measures artery pressure at rest; high readings indicate hypertension, low readings may signal hypotension, guiding cardiovascular management.</p>
+                
+                    <label for="chol">Serum cholesterol (mg/dL):</label>
+                    <input type="number" id="chol" name="chol" min="100" max="400"required>
+                    <p>Serum cholesterol measures the cholesterol in the blood, including LDL (bad) and HDL (good) types. Monitoring helps identify heart disease risk, guiding lifestyle changes or medication for prevention.</p>
+                    
+                    <label for="fbs">Fasting blood sugar level &gt; 120 mg/dL (0: False, 1: True):</label>
+                    <input type="number" id="fbs" name="fbs" min="0" max="1" required>  
+                    <p>Fasting blood sugar measures glucose levels after a period of not eating, usually overnight. It's a key indicator for diabetes diagnosis, with normal levels below 100 mg/dL. Elevated levels may signal prediabetes or diabetes, necessitating monitoring and management to prevent complications.</p>                
+
+                    <label for="restecg">Resting ECG results:</label>
+                    <input type="number" id="restecg" name="restecg" min="0" max="2" required>
+                    <p>Resting ECG results reveal heart electrical activity during rest, detecting irregularities like arrhythmias. This non-invasive test guides diagnosis and treatment decisions for cardiac conditions, aiding in managing cardiovascular health.</p>                        
+
+                    <label for="thalach">Maximum heart rate:</label>
+                    <input type="number" id="thalach" name="thalach" min="60" max="250" required>        
+                    <p>Maximum heart rate (MHR) is the highest heart rate an individual can reach during intense exercise. It's commonly estimated using the formula 220 minus age, though individual variations exist.</p>              
+
+                    <label for="exang">Exercise induced angina (0: No, 1: Yes):</label>
+                    <input type="number" id="exang" name="exang" min="0" max="1" required>  
+                    <p>Exercise-induced angina is chest discomfort that arises during physical activity due to reduced blood flow to the heart muscle, usually caused by narrowed coronary arteries. It's a common symptom of coronary artery disease and may necessitate lifestyle changes, medications, or procedures for management.</p>                
+
+                    <label for="oldpeak">ST depression from exercise compared to rest:</label>
+                    <input type="number" id="oldpeak" name="oldpeak" min="0" max="4" required>  
+                    <p>ST depression during exercise, compared to rest, signals insufficient blood flow to the heart, indicating possible coronary artery disease. This disparity serves as a key diagnostic marker for cardiac issues, aiding in treatment planning.</p>                    
+                
+                    <label for="slope">Slope of exercise induced ST segment (1: Upsloping, 2: Flat, 3: Downsloping):</label>
+                    <input type="number" id="slope" name="slope" min="1" max="3" required>
+                    <p>The slope of the exercise-induced ST segment on an electrocardiogram (ECG) reflects the change in its elevation during physical activity. This assessment helps diagnose coronary artery disease (CAD), with a downward slope indicating potential myocardial ischemia.</p>                      
+                
+                    <label for="ca">Number of major vessels colored by fluoroscopy (0 to 3):</label>
+                    <input type="number" id="ca" name="ca" min="0" max="3" required>  
+                    <p>The count of major vessels visualized with contrast dye during fluoroscopy, often in cardiac catheterization, indicates the extent and severity of coronary artery disease. This assessment guides diagnosis and treatment for conditions like angina and heart attacks.</p>                    
+                                                                              
+                    <label for="thal">Thallium stress test result (3: Normal, 6: Fixed defect, 7: Reversible defect):</label>
+                    <input type="number" id="thal" name="thal" min="3" max="7" required>                    
+                    <p>A thallium stress test evaluates heart blood flow. It involves injecting a radioactive tracer, taking resting images, inducing stress via exercise or medication, and capturing stress images. Comparison helps detect abnormalities, aiding diagnosis of heart conditions like coronary artery disease.</p>
+                    
+                    <input type="submit" value="SUBMIT">
+        </form>
+        <br>
+    </div>
+</div>
+
+    <footer>
+        <p>&copy; 2024 HealthCloud.</p>
+    </footer>
+
+    <script>
+        document.getElementById("thal").addEventListener("input", function() {
+            var value = parseInt(this.value);
+            if (![3, 6, 7].includes(value)) {
+                this.setCustomValidity("Please enter a valid value (3, 6, or 7).");
+            } else {
+                this.setCustomValidity("");
+            }
+        });
+    </script>
+    <!-- <script>
+        function submitForm() {
+            // Prevent the default form submission behavior
+            event.preventDefault();
+    
+            // Gather form data
+            var formData = gatherFormData("healthForm");
+    
+            // Send input values to Flask endpoint
+            fetch("/predict", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display the prediction result in an alert box
+                alert(Prediction Result: ${data.pred});
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    
+            // Clear the form after submission (optional)
+            document.getElementById("healthForm").reset();
+        }
+    
+        // Function to gather form data
+        function gatherFormData(formId) {
+            var formData = {};
+            var formElements = document.getElementById(formId).elements;
+    
+            // Iterate through form elements
+            for (var i = 0; i < formElements.length; i++) {
+                var element = formElements[i];
+    
+                // Check if the element is a form input
+                if (element.tagName === "INPUT") {
+                    formData[element.name] = element.value;
+                }
+            }
+    
+            return formData;
+        }
+    </script> -->
+    
+</body>
+</html>
