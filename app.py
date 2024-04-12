@@ -21,9 +21,9 @@ def predict():
     output=prediction[0]
 
     if output==0:
-        return render_template('predict.html',pred='No heart disease')
+        return render_template('predict.html',pred='You don't have any heart disease. Woohoo!!')
     else:
-        return render_template('predict.html',pred='Yes heart disease')
+        return render_template('predict.html',pred='You may have heart disease. Please consult with the doctors.')
 
 
 if __name__ == '__main__':
